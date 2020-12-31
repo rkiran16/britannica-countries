@@ -1,4 +1,3 @@
-import axios from 'axios';
 window.onload = function() {
 	// Global Variables
 	const html = document.getElementsByTagName("html")[0];
@@ -21,11 +20,12 @@ window.onload = function() {
 			themeButton.innerText = "Dark Mode";
 		}
 		// Get All Countries
-		axios.get(`${API}all`, {
+		fetch(`${API}all`, {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'
 			},})
-			.then( response => {
-				countries = response.data;
+			.then(response => response.json())
+			.then( data => {
+				countries = data;
 				constructCountryComponent(countries);
 			})
 			.catch(err => console.log(err));
