@@ -121,7 +121,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 window.onload = function () {
   // Global Variables
   var html = document.getElementsByTagName("html")[0];
-  var API = 'http://restcountries.eu/rest/v2/';
+  var API = 'https://restcountries.eu/rest/v2/';
   var countries = []; // Toggle Theme
 
   var themeButton = document.getElementById("toggleTheme");

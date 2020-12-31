@@ -1,7 +1,7 @@
 window.onload = function() {
 	// Global Variables
 	const html = document.getElementsByTagName("html")[0];
-	const API = 'http://restcountries.eu/rest/v2/';
+	const API = 'https://restcountries.eu/rest/v2/';
 	let countries = [];
 	// Toggle Theme
 	const themeButton = document.getElementById("toggleTheme");
