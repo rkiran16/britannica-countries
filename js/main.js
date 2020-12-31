@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from 'axios';
 window.onload = function() {
 	// Global Variables
 	const html = document.getElementsByTagName("html")[0];
