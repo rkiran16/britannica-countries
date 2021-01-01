@@ -42,10 +42,15 @@ window.onload = function() {
 		countriesGrid = document.createElement('div');
 		countriesGrid.setAttribute('id', 'countriesGrid');
 		countriesGrid.setAttribute('class', 'countries-grid');
-		data.map((country) => {
+		data.map((country,index) => {
 			const countryDiv = document.createElement('div');
 			countryDiv.setAttribute('class','country-card');
 			countryDiv.setAttribute('data-id', country.name);
+			if (index > 4) {
+				countryDiv.setAttribute('data-aos', "fade-down");
+				countryDiv.setAttribute('data-aos-easing', "linear");
+				countryDiv.setAttribute('data-aos-duration', "1000");
+			}
 			// Flag
 			let flag = document.createElement('img');
 			flag.setAttribute('src', country.flag);

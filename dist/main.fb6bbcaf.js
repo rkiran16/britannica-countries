@@ -167,10 +167,17 @@ window.onload = function () {
     countriesGrid = document.createElement('div');
     countriesGrid.setAttribute('id', 'countriesGrid');
     countriesGrid.setAttribute('class', 'countries-grid');
-    data.map(function (country) {
+    data.map(function (country, index) {
       var countryDiv = document.createElement('div');
       countryDiv.setAttribute('class', 'country-card');
-      countryDiv.setAttribute('data-id', country.name); // Flag
+      countryDiv.setAttribute('data-id', country.name);
+
+      if (index > 4) {
+        countryDiv.setAttribute('data-aos', "fade-down");
+        countryDiv.setAttribute('data-aos-easing', "linear");
+        countryDiv.setAttribute('data-aos-duration', "1000");
+      } // Flag
+
 
       var flag = document.createElement('img');
       flag.setAttribute('src', country.flag);
@@ -390,7 +397,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50617" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53917" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
