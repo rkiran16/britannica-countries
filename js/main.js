@@ -1,7 +1,7 @@
 window.onload = function() {
 	// Global Variables
 	const html = document.getElementsByTagName("html")[0];
-	const API = 'https://restcountries.eu/rest/v2/';
+	const API = 'https://restcountries.com/v3.1/';
 	let countries = [];
 	// Toggle Theme
 	const themeButton = document.getElementById("toggleTheme");
@@ -25,6 +25,7 @@ window.onload = function() {
 			},})
 			.then(response => response.json())
 			.then( data => {
+				console.log(data);
 				countries = data;
 				constructCountryComponent(countries);
 			})
@@ -45,7 +46,7 @@ window.onload = function() {
 		data.map((country,index) => {
 			const countryDiv = document.createElement('div');
 			countryDiv.setAttribute('class','country-card');
-			countryDiv.setAttribute('data-id', country.name);
+			countryDiv.setAttribute('data-id', country.name.official);
 			if (index > 4) {
 				countryDiv.setAttribute('data-aos', "fade-down");
 				countryDiv.setAttribute('data-aos-easing', "linear");
@@ -53,14 +54,14 @@ window.onload = function() {
 			}
 			// Flag
 			let flag = document.createElement('img');
-			flag.setAttribute('src', country.flag);
-			flag.setAttribute('alt', country.name);
+			flag.setAttribute('src', country.flags.png);
+			flag.setAttribute('alt', country.name.official);
 			// Country Content Div
 			const contentDiv = document.createElement('div');
 			contentDiv.setAttribute('class', 'content');
 			// Country Name
 			const title = document.createElement('h3');
-			title.innerText = country.name;
+			title.innerText = country.name.official;
 			contentDiv.appendChild(title);
 			// Country Population
 			const population = document.createElement("p");
@@ -90,7 +91,7 @@ window.onload = function() {
 	searchInput.addEventListener('input', function (event) {
         if(event.target.value && event.target.value !== "") {
         	const searchTerm = event.target.value.toLowerCase();
-        	const filteredData = countries.filter(country => country.name.toLowerCase().includes(searchTerm));
+        	const filteredData = countries.filter(country => country.name.official.toLowerCase().includes(searchTerm));
         	if(filteredData) {
         		constructCountryComponent(filteredData);
 	        }
@@ -117,7 +118,8 @@ window.onload = function() {
 	gridItem.addEventListener('click',function(event) {
 		if(event.target && event.target.hasAttribute('data-id')) {
 			const currentTarget = event.target.getAttribute('data-id');
-			const countryDetails = countries.find(country => country.name === currentTarget);
+			const countryDetails = countries.find(country => country.name.official === currentTarget);
+			console.log(countryDetails);
 			if(countryDetails) {
 				const countryDetailsDiv = document.getElementById('countryDetails');
 				countryDetailsDiv.setAttribute('class', 'country-details');
@@ -142,14 +144,14 @@ window.onload = function() {
 
 				// Country Flag
 				const flag = document.createElement('img');
-				flag.setAttribute('src', countryDetails.flag);
+				flag.setAttribute('src', countryDetails.flags.svg);
 
 				// Country Details
 				const contentDiv = document.createElement('div');
 				contentDiv.setAttribute('class', 'content');
 				// Title
 				const title = document.createElement('h2');
-				title.innerText = countryDetails.name;
+				title.innerText = countryDetails.name.common;
 
 				// Border Countries
 				const borders = document.createElement('div');
@@ -158,7 +160,7 @@ window.onload = function() {
 				const bordersTitle = document.createElement('span');
 				bordersTitle.innerHTML = '<strong>Border Countries: </strong>'
 				borders.appendChild(bordersTitle);
-				countryDetails["borders"].map(border => {
+				countryDetails["borders"] && countryDetails["borders"].map(border => {
 					 const borderDiv = document.createElement('div');
 					 borderDiv.innerText = border
 					 borderDiv.setAttribute('class', 'border');
@@ -174,7 +176,7 @@ window.onload = function() {
 				infoLHS.setAttribute('class', 'info-lhs');
 				// Native Name
 				const nativeName = document.createElement('span');
-				nativeName.innerHTML = `<strong>Native Name : </strong> ${countryDetails.nativeName}`;
+				nativeName.innerHTML = `<strong>Native Name : </strong> ${countryDetails.name.official}`;
 				// Population
 				const population = document.createElement('span');
 				population.innerHTML = `<strong>Population : </strong> ${countryDetails.population}`
@@ -200,13 +202,13 @@ window.onload = function() {
 				infoRHS.setAttribute('class', 'info-rhs');
 				// Domain
 				const domain = document.createElement('span');
-				domain.innerHTML = `<strong>Top Level Domain : </strong> ${countryDetails.topLevelDomain[0]}`;
+				domain.innerHTML = `<strong>Top Level Domain : </strong> ${countryDetails.tld[0]}`;
 				// currency
 				const currency = document.createElement('span');
-				currency.innerHTML = `<strong>Currencies : </strong> ${countryDetails.currencies[0].name}`
+				//currency.innerHTML = `<strong>Currencies : </strong> ${countryDetails.currencies.MKD.name}`
 				// Languages
 				const languages = document.createElement('span');
-				languages.innerHTML = `<strong>Languages : </strong> ${countryDetails.languages[0].name}`
+				languages.innerHTML = `<strong>Languages : </strong> ${countryDetails.languages.mkd}`
 
 				infoRHS.appendChild(domain);
 				infoRHS.appendChild(currency);
