@@ -1,75 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
+    <!-- Facebook Meta Tags -->
+    <meta
+      property="og:url"
+      content="https://rkiran16.github.io/britannica-countries/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="britannica-countries" />
+    <meta
+      property="og:image"
+      content="https://images.pickapic.live/get/6d7dcb58-c6c8-c633-4a14-45c4a2b393af-1659938315.jpeg"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="britannica-countries" />
 
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:domain"
+      content="https://rkiran16.github.io/britannica-countries/"
+    />
+    <meta
+      property="twitter:url"
+      content="https://rkiran16.github.io/britannica-countries/"
+    />
+    <meta name="twitter:title" content="britannica-countries" />
+    <meta
+      name="twitter:description"
+      content="Sr Application Developer at IBM IX"
+    />
+    <meta
+      name="twitter:image"
+      content="https://images.pickapic.live/get/6d7dcb58-c6c8-c633-4a14-45c4a2b393af-1659938315.jpeg"
+    />
+
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
     <!-- Place favicon.ico in the root directory -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-          crossorigin="anonymous"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap"
-          rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
 
-    <meta name="theme-color" content="#fafafa">
-</head>
+    <meta name="theme-color" content="#fafafa" />
+  </head>
 
-<body>
-<!-- Header -->
-<header class="header">
-    <div class="wrapper">
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="wrapper">
         <h3>Where in the world ?</h3>
         <button id="toggleTheme" class="theme-btn">Dark Mode</button>
-    </div>
-</header>
-<!-- Main Content -->
-<main class="main">
-    <div class="wrapper">
+      </div>
+    </header>
+    <!-- Main Content -->
+    <main class="main">
+      <div class="wrapper">
         <div class="filters">
-            <div class="search-input">
-                <i class="fas fa-search icon"></i>
-                <input id="searchInput" type="text" placeholder="Search for a country...">
-            </div>
-            <div class="custom-select">
-                <select id="filterDropDown">
-                    <option>Filter by Region</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Americas">America</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceania</option>
-                    <option value="reset">Reset</option>
-                </select>
-            </div>
+          <div class="search-input">
+            <i class="fas fa-search icon"></i>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search for a country..."
+            />
+          </div>
+          <div class="custom-select">
+            <select id="filterDropDown">
+              <option>Filter by Region</option>
+              <option value="Africa">Africa</option>
+              <option value="Americas">America</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Oceania">Oceania</option>
+              <option value="reset">Reset</option>
+            </select>
+          </div>
         </div>
         <div id="countries"></div>
         <div id="countryDetails"></div>
-    </div>
-</main>
+      </div>
+    </main>
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-	AOS.init();
-</script>
-<script src="js/vendor/modernizr-3.11.2.min.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/select.js"></script>
-<script src="js/main.js"></script>
-</body>
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/select.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
